@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'precacher';
+
+  images: string[] = [];
+
+  constructor() {
+    for (let i = 1; i <= 17; i++ ) {
+      this.images.push(`pic${i}.jpg`);
+    }
+  }
+
 }
