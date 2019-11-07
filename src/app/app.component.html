@@ -362,6 +362,17 @@
   </div>
 </div>
 
+<hr>
+
+<div *ngIf="(devices | async) as data">
+  <ul *ngFor="let device of data.devices">
+    <li>
+      {{device}}
+    </li>
+  </ul>
+</div>
+
 <img *ngFor="let img of images" src="../assets/{{img}}" width="150" height="150">
+
 
 <router-outlet></router-outlet>
