@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {MatCardModule, MatListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     NoopAnimationsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    MatCardModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    MatListModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

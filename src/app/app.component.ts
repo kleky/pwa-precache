@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {switchMap, tap} from 'rxjs/operators';
+import * as moment from 'moment';
+import * as localForage from 'localforage';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,7 @@ export class AppComponent implements OnInit {
 
   images: string[] = [];
   random: Observable<string>;
-  devices: Observable<{ devices: string[] }>;
+  devices: Observable<{ devices: string[], updated: string }>;
 
   constructor(private http: HttpClient) {
     for (let i = 1; i <= 17; i++) {
@@ -21,18 +23,28 @@ export class AppComponent implements OnInit {
     }
   }
 
-  getDevices(): Observable<{ devices: string[] }> {
-    return new Observable<{devices: string[]}>(subscriber => {
-      if (localStorage.getItem('devices')) {
-        subscriber.next(JSON.parse(localStorage.getItem('devices')));
-      }
-      this.http.get<{ devices: string[] }>('http://www.mocky.io/v2/5dc47f293000003c00347bb3?mocky-delay=5000ms').pipe(
-        tap(d => {
-          localStorage.setItem('devices', JSON.stringify(d));
-          console.log('From network', d);
-        })
-      ).subscribe(devices => subscriber.next(devices));
+  getDevices(): Observable<{ devices: string[], updated: string }> {
+
+    return new Observable(subscriber => {
+
+      localForage.getItem('devices').then((cache: string) => {
+        if (cache) {
+          subscriber.next(JSON.parse(cache));
+        }
+      }).then(_ => {
+        this.http.get<{ devices: string[] }>('http://www.mocky.io/v2/5dc47f293000003c00347bb3?mocky-delay=5000ms').pipe(
+          switchMap(data => of({ ...data, updated:  this.now() })),
+          tap(data => {
+            localForage.setItem('devices', JSON.stringify(data));
+            console.log('From network', data);
+          })
+        ).subscribe(data => subscriber.next(data) );
+      });
     });
+  }
+
+  now(): string {
+    return  moment().format('DD-MM-YYYY HH:mm:ss');
   }
 
   ngOnInit(): void {

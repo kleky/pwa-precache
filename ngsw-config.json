@@ -31,13 +31,13 @@
     {
       "name": "devices",
       "urls": [
-        "http://www.mocky.io/v2/5dc47f293000003c00347bb3?mocky-delay=1000ms"
+        "https://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new"
       ],
       "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 10,
-        "maxAge": "1h",
-        "timeout": "5s"
+        "strategy": "performance",
+        "maxSize": 2,
+        "maxAge": "10s",
+        "timeout": "3s"
       }
     }
   ]
