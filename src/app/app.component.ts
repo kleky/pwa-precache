@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   images: string[] = [];
   random: Observable<string>;
   devices: Observable<{ devices: string[], updated: string }>;
+  enabledDevices: boolean = false;
 
   constructor(private http: HttpClient) {
     for (let i = 1; i <= 17; i++) {
