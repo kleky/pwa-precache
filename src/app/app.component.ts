@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   enabledDevices: boolean = false;
 
   constructor(private http: HttpClient) {
-    for (let i = 1; i <= 17; i++) {
+    for (let i = 1; i <= 10; i++) {
       this.images.push(`pic${i}.jpg`);
     }
   }
