@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MatCardModule, MatListModule} from '@angular/material';
+import {ConnectionServiceModule} from 'ng-connection-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatCardModule, MatListModule} from '@angular/material';
     HttpClientModule,
     MatCardModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    MatListModule
+    MatListModule,
+    ConnectionServiceModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

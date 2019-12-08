@@ -286,6 +286,12 @@
   }
 </style>
 
+<div class="show-more" [ngClass]="{'show': showMore}">
+  <div class="cell">
+    Oh dear, it appears that your connection is having trouble although we're showing your last fetched data from {{ (this.devices | async).updated }}
+  </div>
+</div>
+
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img

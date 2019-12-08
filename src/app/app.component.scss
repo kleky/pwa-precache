@@ -1,3 +1,27 @@
 mat-card {
   margin: 20px;
 }
+
+.show-more {
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  -ms-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+  background: #e5feff;
+  overflow: hidden;
+  max-height: 0;
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.show-more.show {
+  max-height: 100px;
+  padding: 4px;
+
+}
