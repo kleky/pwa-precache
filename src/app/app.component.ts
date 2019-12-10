@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
           subscriber.next(JSON.parse(cache));
         }
       }).then(_ => {
-        this.http.get<{ devices: string[] }>('http://www.mocky.io/v2/5dc47f293000003c00347bb3?mocky-delay=5000ms').pipe(
+        this.http.get<{ devices: string[] }>('https://www.mocky.io/v2/5dc47f293000003c00347bb3?mocky-delay=5000ms').pipe(
           switchMap(data => of({...data, updated: this.now()})),
           tap(data => {
             localForage.setItem('devices', JSON.stringify(data));

@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:prod": "ng build --prod && lite-server --baseDir dist",
+    "start": "ng build --prod && lite-server --baseDir dist",
     "lite-server": "lite-server --baseDir dist",
     "build": "ng build",
     "test": "ng test",
